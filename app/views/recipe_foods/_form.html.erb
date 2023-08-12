@@ -1,0 +1,32 @@
+<%= form_with(model: recipe_food) do |form| %>
+  <% if recipe_food.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe_food.errors.count, "error") %> prohibited this recipe_food from being saved:</h2>
+
+      <ul>
+        <% recipe_food.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :quantity, class: "d-block mt-3" %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :recipe_id, class: "d-block mt-3" %>
+    <%= form.select(:recipe_id, options_for_select(@recipes.collect { |u| ["#{u.name}", u.id]}), {}, {class: "form-control"}) %>
+  </div>
+
+  <div>
+    <%= form.label :food_id, class: "d-block mt-3" %>
+    <%= form.select(:food_id, options_for_select(@foods.collect{ |u| ["#{u.name}", u.id]}),{}, {class: "form-control"}) %>
+  </div>
+
+  <div>
+    <%= form.submit "Create Recipe Food", class: "mt-5 btn btn-outline-dark" %>
+  </div>
+<% end %>

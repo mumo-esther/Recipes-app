@@ -1,0 +1,28 @@
+
+<div id="foods">
+  <div class="new-food-link justify-content-end"> 
+    <%= link_to "New food", new_food_path %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement unit</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+        <%= render food %>
+        <td>
+        <%= button_to "Delete", food, method: :delete, class: "btn btn-outline-danger" %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

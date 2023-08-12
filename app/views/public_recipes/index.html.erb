@@ -1,0 +1,30 @@
+<h1 class="mt-4 text-center">Public Recipes</h1>
+
+<div id="recipes">
+  <% @public_recipes.each do |recipe| %>
+    <div id="<%= dom_id recipe %>" class="d-flex border border-dark p-3 mb-4">
+      <div class="d-flex flex-column justify-content-between">
+        <p>
+          <strong>Name:</strong>
+          <%= recipe.name %>
+        </p>
+        <span>By <%= recipe.user.name %></span>
+      </div>
+
+      <div class="ms-5">
+        <p>
+          <strong>Description:</strong>
+          <%= recipe.description %>
+        </p>
+        <p>
+          <strong>Preparation time:</strong>
+          <%= recipe.preparation_time %>
+        </p>
+        <p>
+          <%= link_to "Show this recipe", public_recipe_path(recipe) %>
+        </p>
+      </div>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<%= bootstrap_form_with(model: food, url: foods_path) do |form| %>
+  <% if food.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(food.errors.count, "error") %> prohibited this food from being saved:</h2>
+
+      <ul>
+        <% food.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.text_field :measurement_unit %>
+  </div>
+
+  <div>
+    <%= form.number_field :price %>
+  </div>
+
+  <div>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <% if food.id.nil? %>
+      <%= form.submit "Create Food", class: "mt-3 btn btn-outline-dark" %>
+    <% else  %>
+      <%= form.submit "Save Food", class: "mt-3 btn btn-outline-dark" %>
+    <% end %>
+  </div>
+<% end %>

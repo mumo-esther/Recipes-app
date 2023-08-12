@@ -1,0 +1,76 @@
+<h2 class="text-center text-capitalize mt-4"><%= @recipe.name %></h2>
+<div class="d-flex justify-content-between">
+  <p>
+    <strong>Preparation time:</strong>
+    <%= @recipe.preparation_time %>
+  </p>
+  <div class="d-flex align-items-center">
+    <% if can? :manage, @recipe%>
+      <p class="mb-0 pe-3">Public </p>
+      <%= form_with(model: @recipe, url: toggle_public_recipe_path(@recipe), method: :patch, html: { class: 'form-check form-switch' }) do |form| %>
+        <%= form.check_box :on, role: "switch", checked: @recipe.public, onchange: "this.form.submit()", class: "form-check-input success" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+<p>
+  <strong>Cooking time:</strong>
+  <%= @recipe.cooking_time %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @recipe.public %>
+</p>
+<div class="d-flex justify-content-between mt-3 mb-5">
+  <% if can? :manage, @recipe%>
+  <%= link_to "General shopping list", general_shopping_lists_path, class: "btn btn-outline-dark" %>
+  <%= link_to "Add ingredient", new_recipe_food_path, class: "btn btn-outline-dark" %>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipefood.each do |recipe_food| %>
+      <tr>
+        <td>
+          <%= recipe_food.food.name %>
+        </td>
+
+        <td>
+          <%= recipe_food.quantity %>
+        </td>
+
+        <td> 
+          <%= (recipe_food.food.price * recipe_food.quantity) %>
+        </td>
+      <td>
+        <div class="d-flex">
+          <%= link_to "Modify", edit_recipe_food_path(recipe_food), class: "btn btn-outline-info me-3" %>
+          <%= button_to "Delete", recipe_food, method: :delete, class: "btn btn-outline-danger" %>
+        </div>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%# <div>
+  <%# <%= link_to "Edit this recipe", edit_recipe_path(@recipe) % > | %
+  <%= link_to "Back to recipes", recipes_path %
+
+  <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "btn btn-outline-danger mt-4" %
+</div> %>

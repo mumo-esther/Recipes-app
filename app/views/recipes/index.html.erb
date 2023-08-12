@@ -1,0 +1,11 @@
+<h1 class="mt-4">Recipes</h1>
+
+<div class="d-flex justify-content-end my-4"> 
+  <%= link_to "New recipe", new_recipe_path, class: "btn btn-outline-dark" %>
+</div>
+
+<div id="recipes">
+  <% @recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+  <td>
+    <%= link_to food.name, food_path(id: food.id) %>
+  </td>
+
+  <td>
+    <%= link_to food.measurement_unit, food_path(id: food.id) %>
+  </td>
+
+  <td> 
+    <%= link_to food.price,food_path(id: food.id) %>
+  </td>
+
+  <td>
+    <%= link_to food.quantity, food_path(food.id) %>
+  </td>

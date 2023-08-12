@@ -1,0 +1,55 @@
+<h2 class="text-center text-capitalize mt-4"><%= @recipe.name %></h2>
+<div class="d-flex justify-content-between">
+  <p>
+    <strong>Preparation time:</strong>
+    <%= @recipe.preparation_time %>
+  </p>
+</div>
+
+
+<p>
+  <strong>Cooking time:</strong>
+  <%= @recipe.cooking_time %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @recipe.public %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @public_recipe_food.each do |recipe_food| %>
+      <tr>
+        <td>
+          <%= recipe_food.food.name %>
+        </td>
+
+        <td>
+          <%= recipe_food.quantity %>
+        </td>
+
+        <td> 
+          <%= (recipe_food.food.price * recipe_food.quantity) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%# <div>
+  <%# <%= link_to "Edit this recipe", edit_recipe_path(@recipe) % > | %
+  <%= link_to "Back to recipes", recipes_path %
+
+  <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "btn btn-outline-danger mt-4" %
+</div> %>

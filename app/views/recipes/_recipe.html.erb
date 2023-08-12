@@ -1,0 +1,35 @@
+<div id="<%= dom_id recipe %>" class="d-flex border border-dark p-3 mb-4">
+  <div class="d-flex flex-column justify-content-between">
+    <p>
+      <strong>Name:</strong>
+      <%= recipe.name %>
+    </p>
+    <a>
+      <%= button_to "REMOVE", recipe_path(id: recipe.id), method: :delete, class: "btn btn-outline-danger mt-4" %>
+    </a>
+  </div>
+
+  <div class="ms-5">
+    <p>
+      <strong>Description:</strong>
+      <%= recipe.description %>
+    </p>
+    <p>
+      <strong>Preparation time:</strong>
+      <%= recipe.preparation_time %>
+    </p>
+
+    <%# <p>
+      <strong>Cooking time:</strong>
+      <%= recipe.cooking_time %
+    </p> %>
+
+    <p>
+      <strong>Public:</strong>
+      <%= recipe.public %>
+    </p>
+    <p>
+      <%= link_to "Show this recipe", recipe %>
+    </p>
+  </div>
+</div>
